@@ -2,6 +2,10 @@
 
 This repository contains a customized version of the AWARE Microservice designed specifically for our Digital Phenotyping Capstone project. It integrates seamlessly with the AWARE backend running on our VMware environment and enables secure processing of sensor-based behavioral data.
 
+*NOTE: The only 2 files modified for now are ~/aware-micro/aware-config.json and ~/aware-micro/src/main/kotlin/com/awareframework/micro/MainVerticle.kt
+
+(aware-config.json has the database credintials, and MainVerticle.kt has the back-end RESTful APIs along with others)
+
 ------
 
 📦 Setup & Installation
