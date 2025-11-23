@@ -46,7 +46,6 @@ You can explore all AWARE sensor tables (accelerometer, gyroscope, battery, loca
 If not installed, download it here:
 https://dbeaver.io/download/
 
-Then:
 2. Launch DBeaver
 
 3. Click Database → New Connection
