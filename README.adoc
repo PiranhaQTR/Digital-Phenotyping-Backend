@@ -8,7 +8,7 @@ This repository contains a customized version of the AWARE Microservice designed
 
 ------
 
-📦 Setup & Installation
+📦 Setup & Installation (better on VM -> this is for server-side)
 1. Clone the Repository
 git clone https://github.com/PiranhaQTR/Digital-Phenotyping-Backend.git
 cd Digital-Phenotyping-Backend
@@ -21,14 +21,23 @@ npm install
 
 ------
 
-🔌 Connect to Your AWARE Backend
+🔌 To Connect to This AWARE Backend (from client-side):
 
-This custom build expects a running AWARE server.
-Set your backend URL in your environment config using the IP address of the VM you're on:
+Digital-Phenotyping-Backend Aware-micro server must be running already in order to connect to it.
+Set your backend URL in your environment config (from client-side, in both files: awareAPI.js and DemoScreen.js) using the IP address of the VM you're on:
 
 AWARE_BASE_URL=http://<VM-IP>:8080
 
-STUDY_KEY=<your-study-key>   ---> (unused right now)
+------
+
+📄 API Testing Table (Full Curl Commands):
+Sensor API	                      Curl Command
+Battery	                          bash<br>curl -X POST "http://192.168.10.78:8080/api/battery" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "percentage": 85,<br> "ts": 1732300000000<br> }'<br>
+Screen State	                    bash<br>curl -X POST "http://192.168.10.78:8080/api/screen" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "state": "ON",<br> "ts": 1732300000000<br> }'<br>
+Gyroscope	                        bash<br>curl -X POST "http://192.168.10.78:8080/api/gyroscope" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "ts": 1732300000000,<br> "x": 0.01,<br> "y": 0.02,<br> "z": 0.03,<br> "magnitude": 9.8<br> }'<br>
+Accelerometer	                    bash<br>curl -X POST "http://192.168.10.78:8080/api/accelerometer" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "ts": 1732300000000,<br> "x": 0.10,<br> "y": -0.10,<br> "z": 9.81,<br> "magnitude": 9.83<br> }'<br>
+Pedometer	                        bash<br>curl -X POST "http://192.168.10.78:8080/api/pedometer" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "ts": 1732300000000,<br> "steps": 250<br> }'<br>
+Location	                        bash<br>curl -X POST "http://192.168.10.78:8080/api/location" \ <br> -H "Content-Type: application/json" \ <br> -d '{<br> "device_id": "demo-phone",<br> "ts": 1732300000000,<br> "latitude": 25.2854,<br> "longitude": 51.5310,<br> "accuracy": 5,<br> "altitude": 12,<br> "speed": 1.2<br> }'<br>
 
 ------
 
@@ -36,7 +45,7 @@ Your mobile application or ingestion services will push sensor data to this back
 
 📊 Sensor Data Supported:
 Category	                      Sensors Included
-Device Sensors	                Accelerometer, Gyroscope, Pedometer, Location
+Device Sensors	                  Accelerometer, Gyroscope, Pedometer, Location
 Software Sensors	              Notifications, Screen Events, Battery Status
 
 These are stored in AWARE’s default MySQL tables and can be queried for analytics.
@@ -56,14 +65,7 @@ https://dbeaver.io/download/
 
 4. Select MySQL (or MariaDB)
 
-5. Enter your credentials:
-
-Field	                  Value from aware-config.json
-Host	                  localhost (VM IP)
-Port	                  3306
-Database	              aware_db 
-Username	              aware_user
-Password	              password
+5. Enter your credentials aware-config.json
 
 6. Test the Connection: 
 Click Test Connection.
